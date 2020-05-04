@@ -21,6 +21,7 @@ class App extends Component {
 		return (
 			<div className="App">
 				<h1>Library Jamboree</h1>
+				<p>Nikita adding a paragraph to test</p>
 			</div>
 		);
 	}
