@@ -1,27 +1,22 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import './App.scss';
-
-
+import axios from 'axios';
+import firebase from './components/firebase';
 
 class App extends Component {
-	getAxios = () => {
-		axios({
-			url: `https://opendata.tpl.ca/resources/events`,
-			method: `GET`,
-			responseType: `json`,
-			params: {
-			}
-		}).then(() => {
-
-		})
+	constructor() {
+		super();
 	}
-	
+
+	componentDidMount() {
+		const dbRef = firebase.database().ref();
+		console.log(dbRef);
+	}
+
 	render() {
 		return (
 			<div className="App">
-				<h1>Library Jamboree</h1>
-				<p>Nikita adding a paragraph to test</p>
+				<h1>Budget App</h1>
 			</div>
 		);
 	}
