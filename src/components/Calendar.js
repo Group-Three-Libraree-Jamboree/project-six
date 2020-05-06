@@ -7,24 +7,35 @@ import 'react-datepicker/dist/react-datepicker.css';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 
 class Calendar extends React.Component {
-    state = {
-        startDate: new Date(),
-    };
+	state = {
+		startDate: new Date(),
+	};
 
-    handleChange = (date) => {
-        this.setState({
-            startDate: date,
-        });
-    };
+	handleChange = (date) => {
+		this.setState({
+			startDate: date,
+		});
+	};
 
-    render() {
-        return (
-            <DatePicker
-                selected={this.state.startDate}
-                onChange={this.handleChange}
-            />
-        );
-    }
+	componentDidMount() {
+		this.storeDate();
+	}
+
+	storeDate = () => {
+		const dayOfTrans = this.state.startDate;
+		const makeString = dayOfTrans.toString();
+		const sliceDate = makeString.slice(0, 15);
+		console.log(sliceDate);
+	};
+
+	render() {
+		return (
+			<DatePicker
+				selected={this.state.startDate}
+				onChange={this.handleChange}
+			/>
+		);
+	}
 }
 
 export default Calendar;
