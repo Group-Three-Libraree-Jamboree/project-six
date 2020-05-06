@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Calendar from './components/Calendar';
+import Expenses from './components/Expenses';
 import './App.scss';
 // import axios from 'axios';
 import firebase from './components/firebase';
@@ -72,6 +73,7 @@ class App extends Component {
 			</form>
 				<p>You have this much to spend:</p>
 				<p>Your daily budget is: {this.state.dailybudget}</p>
+				<Expenses />
 		</div>
 		);
 	}
