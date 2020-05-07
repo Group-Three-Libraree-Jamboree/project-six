@@ -3,38 +3,63 @@ import React, { Component } from 'react';
 class Expenses extends Component {
 	constructor() {
 		super();
-		this.state = {
-			newInput: 0,
-		};
+		this.state = { values: [] };
+	}
+	createUI() {
+		return this.state.values.map((objectInput, i) => (
+			<div key={i}>
+				<input
+					type="text"
+					value={objectInput}
+					onChange={(event) => this.handleChange(event, i)}
+				/>
+				<input
+					type="number"
+					value={objectInput}
+					onChange={(event) => this.handleChange(event, i)}
+				/>
+				<input type="button" value="remove" onClick={this.removeClick} />
+			</div>
+		));
 	}
 
-	makeNewInput = () => {
-		this.setState({
-			newInput: !this.state.newInput,
-		});
+	handleChange = (event, i) => {
+		console.log(event);
+		console.log(i);
+
+		let values = [...this.state.values];
+		values[i] = event.target.value;
+		this.setState({ values });
 	};
+
+	addClick = () => {
+		this.setState((prevState) => ({ values: [...prevState.values, ''] }));
+	};
+
+	removeClick = (i) => {
+		let values = [...this.state.values];
+		values.splice(i, 1);
+		this.setState({ values });
+	};
+
+	handleSubmit = (event) => {
+		alert('A name was submitted: ' + this.state.values.join(', '));
+		event.preventDefault();
+	};
+
 	render() {
 		return (
 			<div className="wrapper">
-				<form className="expenseInputs" action="">
-					<label htmlFor="expenseItem">description </label>
-					<input type="text" name="description" id="expenseItem" />
-
-					<label htmlFor="expenseValue">Amount</label>
-					<input type="number" name="expense" id="expenseValue" />
-
-					{this.state.newInput ? (
-						<input type="text" name="description" id="expenseItem" />
-					) : (
-						<div></div>
-					)}
-
-					<button className="finishButton" type="submit">
-						Add Expenses
-					</button>
+				<form className="expenseInputs" onSubmit={this.handleSubmit}>
+					{this.createUI()}
+					<input
+						className="nextButton"
+						type="button"
+						value="add expense"
+						onClick={this.addClick}
+					/>
+					<input className="nextButton" type="submit" value="Submit" />
 				</form>
-
-				<button onClick={this.makeNewInput}>Hey make a new items</button>
 			</div>
 		);
 	}
