@@ -15,6 +15,7 @@ class App extends Component {
 			dailybudget: 0,
 			total: 0,
 			afterSaving: 0,
+			calendarDate: '',
 		};
 	}
 
@@ -26,7 +27,7 @@ class App extends Component {
 				total: total,
 				daysToNextCheck: days,
 				income: {
-					date: {
+					[this.state.calendarDate]: {
 						paycheck: paycheck,
 						deposited: true,
 						amountToSave: savings,
@@ -37,9 +38,15 @@ class App extends Component {
 		dbRef.push(dataToStoreInFb);
 	};
 
+	// grabs calender date from the calender component
+	getCalenderDate = (passedDate) => {
+		this.setState({
+			calendarDate: passedDate,
+		});
+	};
+
 	componentDidMount() {
 		const dbRef = firebase.database().ref();
-		console.log(dbRef);
 	}
 
 	handleUserInput = (event) => {
@@ -74,12 +81,14 @@ class App extends Component {
 		);
 	};
 
+	
+
 	render() {
 		return (
 			<div className="App">
 				<h1>Budget App</h1>
 				{/* You need to install Calendar in iTerm: npm install react-datepicker --save */}
-				<Calendar />
+				<Calendar getCalenderDate={this.getCalenderDate} />
 				<form onSubmit={this.calcTotal}>
 					<label htmlFor="paycheck">How much is your paycheck?</label>
 					<input

@@ -12,20 +12,23 @@ class Calendar extends React.Component {
 	};
 
 	handleChange = (date) => {
-		this.setState({
-			startDate: date,
-		});
+		this.setState(
+			{
+				startDate: date,
+			},
+			() => {
+				this.storeDate();
+			}
+		);
 	};
 
-	componentDidMount() {
-		this.storeDate();
-	}
-
-	storeDate = () => {
+	storeDate = (passDate) => {
 		const dayOfTrans = this.state.startDate;
 		const makeString = dayOfTrans.toString();
 		const sliceDate = makeString.slice(0, 15);
-		console.log(sliceDate);
+		// console.log(sliceDate);
+		passDate = sliceDate;
+		this.props.getCalenderDate(passDate);
 	};
 
 	render() {
