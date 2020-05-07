@@ -1,3 +1,27 @@
 body {
-    background: $mainColor;
+	background: $mainColor;
+}
+
+header {
+	padding: 2rem;
+	text-align: center;
+	h1 {
+		font-size: 4.3rem;
+		margin: 1.5rem 0 0 0;
+		color: $accentOne;
+		font-family: $headingFont;
+		line-height: 5.5rem;
+		text-transform: uppercase;
+		font-weight: normal;
+	}
+
+	p {
+		font-size: 1.5rem;
+		font-weight: normal;
+		margin-bottom: 1rem;
+		color: $darkColor;
+		font-family: $bodyFont;
+		padding-bottom: 1rem;
+		line-height: 2.4rem;
+	}
 }

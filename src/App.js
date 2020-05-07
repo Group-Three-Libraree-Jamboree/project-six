@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import firebase from './components/firebase';
+import Header from './components/Header';
 import Calendar from './components/Calendar';
 import Expenses from './components/Expenses';
+import Footer from './components/Footer';
 import './App.scss';
-// import axios from 'axios';
-import firebase from './components/firebase';
 
 class App extends Component {
 	constructor() {
@@ -81,41 +82,46 @@ class App extends Component {
 		);
 	};
 
-	
-
 	render() {
 		return (
 			<div className="App">
-				<h1>Budget App</h1>
+				<Header />
 				{/* You need to install Calendar in iTerm: npm install react-datepicker --save */}
 				<Calendar getCalenderDate={this.getCalenderDate} />
-				<form onSubmit={this.calcTotal}>
-					<label htmlFor="paycheck">How much is your paycheck?</label>
-					<input
-						type="number"
-						id="paycheck"
-						name="paycheck"
-						onChange={this.handleUserInput}
-					></input>
-					<label htmlFor="days">Days till next pay period?</label>
-					<input
-						type="number"
-						id="days"
-						name="days"
-						onChange={this.handleUserInput}
-					></input>
-					<label htmlFor="savings">How much would you like to save?</label>
-					<input
-						type="number"
-						id="savings"
-						name="savings"
-						onChange={this.handleUserInput}
-					></input>
-					<button type="submit">Calculate</button>
-				</form>
-				<p>You have this much to spend:</p>
-				<p>Your daily budget is: {this.state.dailybudget}</p>
+				<div className="wrapper">
+					<form className="paymentSubmit" onSubmit={this.calcTotal}>
+						<label htmlFor="paycheck">How much is your paycheck?</label>
+						<input
+							type="number"
+							id="paycheck"
+							name="paycheck"
+							onChange={this.handleUserInput}
+						></input>
+						<label htmlFor="days">Days till next pay period?</label>
+						<input
+							type="number"
+							id="days"
+							name="days"
+							onChange={this.handleUserInput}
+						></input>
+						<label htmlFor="savings">How much would you like to save?</label>
+						<input
+							type="number"
+							id="savings"
+							name="savings"
+							onChange={this.handleUserInput}
+						></input>
+						<button className="nextButton" type="submit">
+							Next
+						</button>
+					</form>
+
+					<p className="dailyInfo">
+						Your daily budget is:<span> {this.state.dailybudget}</span>
+					</p>
+				</div>
 				<Expenses />
+				<Footer />
 			</div>
 		);
 	}
