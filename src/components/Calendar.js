@@ -1,8 +1,6 @@
 import React from 'react';
 import DatePicker from 'react-datepicker';
-
 import 'react-datepicker/dist/react-datepicker.css';
-
 // CSS Modules, react-datepicker-cssmodules.css
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 
@@ -12,28 +10,34 @@ class Calendar extends React.Component {
 	};
 
 	handleChange = (date) => {
-		this.setState({
-			startDate: date,
-		});
+		this.setState(
+			{
+				startDate: date,
+			},
+			() => {
+				this.storeDate();
+			}
+		);
 	};
 
-	componentDidMount() {
-		this.storeDate();
-	}
-
-	storeDate = () => {
+// This function grabs the date picked by the user. Changes that value from an Object to a string, slices it, then passed it back to the parent
+	storeDate = (passDate) => {
 		const dayOfTrans = this.state.startDate;
 		const makeString = dayOfTrans.toString();
 		const sliceDate = makeString.slice(0, 15);
-		console.log(sliceDate);
+		// console.log(sliceDate);
+		passDate = sliceDate;
+		this.props.getCalenderDate(passDate);
 	};
 
 	render() {
 		return (
-			<DatePicker
-				selected={this.state.startDate}
-				onChange={this.handleChange}
-			/>
+			<div className="wrapper">
+				<DatePicker
+					selected={this.state.startDate}
+					onChange={this.handleChange}
+				/>
+			</div>
 		);
 	}
 }
