@@ -62,7 +62,8 @@ class App extends Component {
 
 	calcTotal = (e) => {
 		e.preventDefault();
-		const total = this.state.paycheck - this.state.savings;
+		const total =
+			this.state.paycheck - this.state.savings - this.state.dailyExpenses;
 		this.setState(
 			{
 				total: total,
@@ -99,6 +100,7 @@ class App extends Component {
 							id="paycheck"
 							name="paycheck"
 							onChange={this.handleUserInput}
+							required
 						></input>
 						<label htmlFor="days">Days till next pay period?</label>
 						<input
@@ -106,6 +108,7 @@ class App extends Component {
 							id="days"
 							name="days"
 							onChange={this.handleUserInput}
+							required
 						></input>
 						<label htmlFor="savings">How much would you like to save?</label>
 						<input
