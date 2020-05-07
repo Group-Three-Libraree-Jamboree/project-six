@@ -4,45 +4,48 @@ class Expenses extends Component {
 	constructor() {
 		super();
 		this.state = { values: [] };
-		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 	createUI() {
-		return this.state.values.map((el, i) => (
+		return this.state.values.map((objectInput, i) => (
 			<div key={i}>
 				<input
 					type="text"
-					value={el || ''}
-					onChange={this.handleChange.bind(this, i)}
+					value={objectInput}
+					onChange={(event) => this.handleChange(event, i)}
 				/>
 				<input
-					type="button"
-					value="remove"
-					onClick={this.removeClick.bind(this, i)}
+					type="number"
+					value={objectInput}
+					onChange={(event) => this.handleChange(event, i)}
 				/>
+				<input type="button" value="remove" onClick={this.removeClick} />
 			</div>
 		));
 	}
 
-	handleChange(i, event) {
+	handleChange = (event, i) => {
+		console.log(event);
+		console.log(i);
+
 		let values = [...this.state.values];
 		values[i] = event.target.value;
 		this.setState({ values });
-	}
+	};
 
-	addClick() {
+	addClick = () => {
 		this.setState((prevState) => ({ values: [...prevState.values, ''] }));
-	}
+	};
 
-	removeClick(i) {
+	removeClick = (i) => {
 		let values = [...this.state.values];
 		values.splice(i, 1);
 		this.setState({ values });
-	}
+	};
 
-	handleSubmit(event) {
+	handleSubmit = (event) => {
 		alert('A name was submitted: ' + this.state.values.join(', '));
 		event.preventDefault();
-	}
+	};
 
 	render() {
 		return (
@@ -53,7 +56,7 @@ class Expenses extends Component {
 						className="nextButton"
 						type="button"
 						value="add expense"
-						onClick={this.addClick.bind(this)}
+						onClick={this.addClick}
 					/>
 					<input className="nextButton" type="submit" value="Submit" />
 				</form>
