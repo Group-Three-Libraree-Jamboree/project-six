@@ -22,7 +22,6 @@ class Expenses extends Component {
 
 					<label htmlFor="expenseValue">Amount</label>
 					<input type="number" name="expense" id="expenseValue" />
-					
 
 					{this.state.newInput ? (
 						<input type="text" name="description" id="expenseItem" />

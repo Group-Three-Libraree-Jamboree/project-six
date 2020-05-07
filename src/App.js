@@ -20,6 +20,7 @@ class App extends Component {
 		};
 	}
 
+// This function creates an object to save the firebase based on state.
 	saveToDb = () => {
 		const dbRef = firebase.database().ref();
 		const { paycheck, savings, days, total } = this.state;
@@ -39,7 +40,7 @@ class App extends Component {
 		dbRef.push(dataToStoreInFb);
 	};
 
-	// grabs calender date from the calender component
+	// grabs calender date from the calender component and adds it to state 
 	getCalenderDate = (passedDate) => {
 		this.setState({
 			calendarDate: passedDate,
@@ -50,6 +51,7 @@ class App extends Component {
 		const dbRef = firebase.database().ref();
 	}
 
+// this function grabs all input values from app.js and adds it to state
 	handleUserInput = (event) => {
 		console.log(event.target.value);
 		this.setState({
