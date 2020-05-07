@@ -6,8 +6,8 @@ import './App.scss';
 import firebase from './components/firebase';
 
 class App extends Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {
 			paycheck: 0,
 			savings: 0,
@@ -15,18 +15,26 @@ class App extends Component {
 			dailybudget: 0,
 			total: 0,
 			afterSaving: 0,
+			passingDate: ""
 		};
 	}
 
-	saveToDb = () => {
+	saveToDb = (date) => {
+		console.log(date);
+		let passingDate = date;
+		this.setState({
+			passingDate: passingDate
+		});
+
+		console.log(passingDate);
 		const dbRef = firebase.database().ref();
 		const { paycheck, savings, days, total } = this.state;
 		const dataToStoreInFb = {
-			user: {
+			[this.state.passingDate]: {
 				total: total,
 				daysToNextCheck: days,
 				income: {
-					date: {
+					test: {
 						paycheck: paycheck,
 						deposited: true,
 						amountToSave: savings,
@@ -39,7 +47,7 @@ class App extends Component {
 
 	componentDidMount() {
 		const dbRef = firebase.database().ref();
-		console.log(dbRef);
+		// console.log(dbRef);
 	}
 
 	handleUserInput = (event) => {
@@ -79,7 +87,7 @@ class App extends Component {
 			<div className="App">
 				<h1>Budget App</h1>
 				{/* You need to install Calendar in iTerm: npm install react-datepicker --save */}
-				<Calendar />
+				<Calendar saveToDb={this.saveToDb}/>
 				<form onSubmit={this.calcTotal}>
 					<label htmlFor="paycheck">How much is your paycheck?</label>
 					<input
