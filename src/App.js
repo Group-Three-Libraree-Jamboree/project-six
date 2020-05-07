@@ -16,11 +16,12 @@ class App extends Component {
 			dailybudget: 0,
 			total: 0,
 			afterSaving: 0,
+			dailyExpenses: 0,
 			calendarDate: '',
 		};
 	}
 
-// This function creates an object to save the firebase based on state.
+	// This function creates an object to save the firebase based on state.
 	saveToDb = () => {
 		const dbRef = firebase.database().ref();
 		const { paycheck, savings, days, total } = this.state;
@@ -40,7 +41,7 @@ class App extends Component {
 		dbRef.push(dataToStoreInFb);
 	};
 
-	// grabs calender date from the calender component and adds it to state 
+	// grabs calender date from the calender component and adds it to state
 	getCalenderDate = (passedDate) => {
 		this.setState({
 			calendarDate: passedDate,
@@ -51,7 +52,7 @@ class App extends Component {
 		const dbRef = firebase.database().ref();
 	}
 
-// this function grabs all input values from app.js and adds it to state
+	// this function grabs all input values from app.js and adds it to state
 	handleUserInput = (event) => {
 		console.log(event.target.value);
 		this.setState({
@@ -113,6 +114,13 @@ class App extends Component {
 							name="savings"
 							onChange={this.handleUserInput}
 						></input>
+						<label htmlFor="dailyExpenses">Enter Daily Expenses</label>
+						<input
+							type="number"
+							id="dailyExpenses"
+							name="dailyExpenses"
+							onChange={this.handleUserInput}
+						></input>
 						<button className="nextButton" type="submit">
 							Next
 						</button>
@@ -122,7 +130,7 @@ class App extends Component {
 						Your daily budget is:<span> {this.state.dailybudget}</span>
 					</p>
 				</div>
-				<Expenses />
+				{/* <Expenses /> */}
 				<Footer />
 			</div>
 		);
