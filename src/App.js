@@ -147,7 +147,7 @@ class App extends Component {
 						<p className="dailyInfo">
 							Your daily budget is:<span> {this.state.dailybudget}</span>
 						</p>
-						<DisplayMoney />
+						{/* <DisplayMoney /> */}
 					</div>
 				</main>
 
