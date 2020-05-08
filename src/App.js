@@ -58,12 +58,12 @@ class App extends Component {
 	// testingFirebase = () => {
 	// 	const dbRefOne = firebase
 	// 		.database()
-	// 		.ref('/-M6l_CLTSVwtJ7biqzXS/user/income/Thu-May-07-2020');
+	// 		.ref('/-M6m99gw-ggOacJN-qEO/user/income/Thu-May-07-2020');
 	// 	dbRefOne.on('value', (result) => {
 	// 		console.log(result.val());
 	// 	});
 
-	// 	dbRefOne.update({ paycheck: "25" });
+	// 	dbRefOne.update({ paycheck: "45" });
 	// };
 
 	// this function grabs all input values from app.js and adds it to state
