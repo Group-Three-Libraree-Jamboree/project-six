@@ -1,0 +1,24 @@
+@media(max-width: 950px){
+  .wrapper{
+    width: 85vw;
+  }
+}
+
+@media(max-width: 800px){
+  .wrapper{
+    width: 85vw;
+  }
+
+  main .wrapper{
+    flex-wrap: wrap;
+  }
+
+  main .half{
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  main .half:first-of-type{
+	margin-right: 0;
+}
+}
