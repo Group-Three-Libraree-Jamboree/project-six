@@ -1,0 +1,59 @@
+body {
+	background: $mainColor;
+  font-family: $bodyFont;
+  color: $darkColor;
+  font-size: 1.5rem;
+}
+
+.wrapper {
+	max-width: 1400px;
+	margin: 0 auto;
+	width: 70vw;
+}
+
+label {
+  font-size: 2rem;
+  display: block;
+  padding-bottom: 1rem;
+}
+
+input {
+  padding: 1rem;
+  width: 60%;
+  min-width: 280px;
+  border: none;
+  border-radius: 3px;
+  margin-bottom: 2rem;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+button {
+    display: block;
+		background: $accentOne;
+		color: $lightColor;
+		padding: 1.2rem 1rem;
+		border: 1px solid $accentOne;
+		text-transform: uppercase;
+		width: 50%;
+		min-width: 220px;
+		text-align: center;
+		
+
+		&:hover,
+		&:focus {
+			background: $lightColor;
+			color: $accentOne;
+		}
+}
+

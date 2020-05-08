@@ -105,49 +105,54 @@ class App extends Component {
 			<div className="App">
 				<Header />
 				{/* You need to install Calendar in iTerm: npm install react-datepicker --save */}
-				<Calendar getCalenderDate={this.getCalenderDate} />
-				<main className="wrapper">
-					<div className="content">
-						<form className="paymentSubmit" onSubmit={this.calcTotal}>
-							<label htmlFor="paycheck">How much is your paycheck?</label>
-							<input
-								type="number"
-								id="paycheck"
-								name="paycheck"
-								onChange={this.handleUserInput}
-								required
-							></input>
-							<label htmlFor="days">Days till next pay period?</label>
-							<input
-								type="number"
-								id="days"
-								name="days"
-								onChange={this.handleUserInput}
-								required
-							></input>
-							<label htmlFor="savings">How much would you like to save?</label>
-							<input
-								type="number"
-								id="savings"
-								name="savings"
-								onChange={this.handleUserInput}
-							></input>
-							<label htmlFor="dailyExpenses">Enter Daily Expenses</label>
-							<input
-								type="number"
-								id="dailyExpenses"
-								name="dailyExpenses"
-								onChange={this.handleUserInput}
-							></input>
-							<button className="nextButton" type="submit">
-								Next
-							</button>
-						</form>
 
-						<p className="dailyInfo">
-							Your daily budget is:<span> {this.state.dailybudget}</span>
-						</p>
-						{/* <DisplayMoney /> */}
+				<main>
+					<div className="wrapper">
+						<div className="half">
+							<form className="paymentSubmit" onSubmit={this.calcTotal}>
+								<Calendar getCalenderDate={this.getCalenderDate} />
+								<label htmlFor="paycheck">How much is your paycheck?</label>
+								<input
+									type="number"
+									id="paycheck"
+									name="paycheck"
+									onChange={this.handleUserInput}
+									required
+								></input>
+								<label htmlFor="days">Days until next pay period?</label>
+								<input
+									type="number"
+									id="days"
+									name="days"
+									onChange={this.handleUserInput}
+									required
+								></input>
+								<label htmlFor="savings">How much are you saving?</label>
+								<input
+									type="number"
+									id="savings"
+									name="savings"
+									onChange={this.handleUserInput}
+								></input>
+								<label htmlFor="dailyExpenses">Enter Daily Expenses:</label>
+								<input
+									type="number"
+									id="dailyExpenses"
+									name="dailyExpenses"
+									onChange={this.handleUserInput}
+								></input>
+								<button className="nextButton" type="submit">
+									Next
+								</button>
+							</form>
+						</div>
+						<div className="half">
+							<p className="dailyInfo">
+								Your daily budget is:<span> ${(this.state.dailybudget).toFixed(2)}</span>
+							</p>
+							{/* <DisplayMoney /> */}
+						</div>
+
 					</div>
 				</main>
 

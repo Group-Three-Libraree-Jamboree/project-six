@@ -1,10 +1,9 @@
-body {
-	background: $mainColor;
-}
+
 
 header {
 	padding: 2rem;
 	text-align: center;
+	color: $accentOne;
 	h1 {
 		font-size: 4.3rem;
 		margin: 1.5rem 0 0 0;
@@ -16,11 +15,9 @@ header {
 	}
 
 	p {
-		font-size: 1.5rem;
-		font-weight: normal;
+		font-size: 2rem;
 		margin-bottom: 1rem;
-		color: $darkColor;
-		font-family: $bodyFont;
+		padding-top: 1rem;
 		padding-bottom: 1rem;
 		line-height: 2.4rem;
 	}

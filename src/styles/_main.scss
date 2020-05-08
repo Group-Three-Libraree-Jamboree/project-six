@@ -1,50 +1,32 @@
-.wrapper {
-	max-width: 1400px;
-	margin: 0 auto;
-	width: 90%;
+
+main{
+	min-height: 74vh;
+
+.wrapper{
+	display: flex;
+}
+.react-datepicker__input-container > input:nth-child(1){
+	min-width: 200px;
+}
+
+.half{
+	width: 50%;
+	border: 3px solid $accentOne;
+	padding: 1rem;
+	border-radius: 3px;
+}
+
+.half:first-of-type{
+	margin-right: 10px;
+}
+
+.nextButton{
+	margin-top: 1.5rem;
+}
+
 }
 
 
-.paymentSubmit {
-    max-width: 800px;
-  
 
 
-    label {
-        font-size: 2rem;
-        display: block;
-        padding: 1rem;
-    
-    }
 
-    input {
-        padding: 1rem;
-        width: 50%;
-        font-size: 1.5rem;
-    }
-}
-
-.nextButton {
-    display: block;
-		position: relative;
-		background: $accentOne;
-		color: $lightColor;
-		padding: 1.2rem 1rem;
-		border: 1px solid $accentOne;
-		text-decoration: none;
-		text-transform: uppercase;
-		width: 50%;
-		font-family: 'Lato', sans-serif;
-		font-weight: normal;
-		font-size: 1.3rem;
-		line-height: 1.6rem;
-		text-align: center;
-        letter-spacing: 0.07em;
-        margin-bottom: 2rem;
-
-		&:hover,
-		&:focus {
-			background: $lightColor;
-			color: $accentOne;
-		}
-}
