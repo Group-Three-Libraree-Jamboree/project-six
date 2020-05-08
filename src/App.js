@@ -105,6 +105,7 @@ class App extends Component {
 			<div className="App">
 				<Header />
 				{/* You need to install Calendar in iTerm: npm install react-datepicker --save */}
+
 				<main>
 					<div className="wrapper">
 						<div className="half">
@@ -151,6 +152,7 @@ class App extends Component {
 							</p>
 							{/* <DisplayMoney /> */}
 						</div>
+
 					</div>
 				</main>
 
