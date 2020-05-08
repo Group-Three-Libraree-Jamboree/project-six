@@ -20,17 +20,17 @@ class Calendar extends React.Component {
 		);
 	};
 
-componentDidMount() {
-	this.storeDate();	
-}
+	componentDidMount() {
+		this.storeDate();
+	}
 
-// This function grabs the date picked by the user. Changes that value from an Object to a string, slices it, then passed it back to the parent
+	// This function grabs the date picked by the user. Changes that value from an Object to a string, slices it, then passed it back to the parent
 	storeDate = (passDate) => {
 		const dayOfTrans = this.state.startDate;
 		const makeString = dayOfTrans.toString();
 		const sliceDate = makeString.slice(0, 15);
 		// console.log(sliceDate);
-		passDate = sliceDate;
+		passDate = sliceDate.replace(/\s/g, '-');
 		this.props.getCalenderDate(passDate);
 	};
 
