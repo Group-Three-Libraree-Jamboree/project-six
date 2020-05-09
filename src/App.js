@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import firebase from './components/firebase';
 import Header from './components/Header';
 import Calendar from './components/Calendar';
-import Expenses from './components/Expenses';
+// import Expenses from './components/Expenses';
+import TransactionRecords from './components/TransactionRecords';
+
 import Footer from './components/Footer';
 import './App.scss';
 import DisplayMoney from './components/DisplayMoney';
@@ -110,7 +112,6 @@ class App extends Component {
 					<div className="wrapper">
 						<div className="half">
 							<form className="paymentSubmit" onSubmit={this.calcTotal}>
-								<Calendar getCalenderDate={this.getCalenderDate} />
 								<label htmlFor="paycheck">How much is your paycheck?</label>
 								<input
 									type="number"
@@ -148,14 +149,14 @@ class App extends Component {
 						</div>
 						<div className="half">
 							<p className="dailyInfo">
-								Your daily budget is:<span> ${(this.state.dailybudget).toFixed(2)}</span>
+								Your daily budget is:
+								<span> ${this.state.dailybudget.toFixed(2)}</span>
 							</p>
-							{/* <DisplayMoney /> */}
+							<DisplayMoney />
 						</div>
-
 					</div>
 				</main>
-
+			
 				<Footer />
 			</div>
 		);
