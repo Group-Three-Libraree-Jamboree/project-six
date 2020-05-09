@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import firebase from './components/firebase';
 import Header from './components/Header';
-import Calendar from './components/Calendar';
-// import Expenses from './components/Expenses';
+// import Calendar from './components/Calendar';
+import DisplayMoney from './components/DisplayMoney';
 import TransactionRecords from './components/TransactionRecords';
-
 import Footer from './components/Footer';
 import './App.scss';
-import DisplayMoney from './components/DisplayMoney';
+
 
 class App extends Component {
 	constructor() {
@@ -20,29 +19,20 @@ class App extends Component {
 			total: 0,
 			afterSaving: 0,
 			dailyExpenses: 0,
-			calendarDate: '',
 		};
 	}
 
 	// This function creates an object to save the firebase based on state.
 	saveToDb = () => {
-		const dbRef = firebase.database().ref();
+		const dbRef = firebase.database().ref('user');
 		const { paycheck, savings, days, total } = this.state;
 		const dataToStoreInFb = {
-			user: {
-				total: total,
-				daysToNextCheck: days,
-				income: {
-					[this.state.calendarDate]: {
-						date: this.state.calendarDate,
-						paycheck: paycheck,
-						deposited: true,
-						amountToSave: savings,
-					},
-				},
-			},
+			total: total,
+			daysToNextCheck: days,
+			paycheck: paycheck,
+			amountToSave: savings,
 		};
-		dbRef.push(dataToStoreInFb);
+		dbRef.update(dataToStoreInFb);
 	};
 
 	// grabs calender date from the calender component and adds it to state
@@ -52,21 +42,7 @@ class App extends Component {
 		});
 	};
 
-	componentDidMount() {
-		const dbRef = firebase.database().ref();
-		// this.testingFirebase();
-	}
 
-	// testingFirebase = () => {
-	// 	const dbRefOne = firebase
-	// 		.database()
-	// 		.ref('/-M6m99gw-ggOacJN-qEO/user/income/Thu-May-07-2020');
-	// 	dbRefOne.on('value', (result) => {
-	// 		console.log(result.val());
-	// 	});
-
-	// 	dbRefOne.update({ paycheck: "45" });
-	// };
 
 	// this function grabs all input values from app.js and adds it to state
 	handleUserInput = (event) => {
