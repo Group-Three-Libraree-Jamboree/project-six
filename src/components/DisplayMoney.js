@@ -5,42 +5,39 @@ class DisplayMoney extends Component {
 	constructor() {
 		super();
 		this.state = {
-			userMoney: [],
+			total: 0,
+			daysToNextCheck: 0,
+			paycheck: 0,
+			amountToSave: 0,
 		};
 	}
 
 	componentDidMount() {
-		const dbRef = firebase.database().ref();
+		const dbRef = firebase.database().ref('user');
 		dbRef.on('value', (result) => {
 			const data = result.val();
-			const userMoney = [];
+
 			for (let key in data) {
-				userMoney.push(data[key]);
+				// userMoney.push({ [key]: data[key] });
+
+				this.setState({
+					[key]: data[key],
+				});
 			}
-			this.setState({
-				userMoney: userMoney,
-			});
 		});
 	}
 
 	render() {
+		const { total, daysToNextCheck, paycheck } = this.state;
 		return (
 			<div>
-				{this.state.userMoney.map((money, i) => {
-					return (
-						<div key={i}>
-							<h2>You currently have {money.user.total}</h2>
-							<h2>
-								You have {money.user.daysToNextCheck} days till your next
-								paycheck
-							</h2>
-							<h3>
-								You were paid {money.user.income['Thu-May-07-2020'].paycheck} on{' '}
-								{money.user.income['Thu-May-07-2020'].date}
-							</h3>
-						</div>
-					);
-				})}
+				<div>
+					<p className="dailyInfo">You currently have <span>{total}</span></p>
+					<p className="dailyInfo">
+						You have <span>{daysToNextCheck}</span> days till your next paycheck
+					</p>
+					<p className="dailyInfo">Your last paycheck was for <span>{paycheck}</span> </p>
+				</div>
 			</div>
 		);
 	}
