@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import firebase from './components/firebase';
 import Header from './components/Header';
-// import Calendar from './components/Calendar';
+import NewCalendar from './components/NewCalendar';
 import DisplayMoney from './components/DisplayMoney';
 import TransactionRecords from './components/TransactionRecords';
 import Footer from './components/Footer';
 import './App.scss';
-
 
 class App extends Component {
 	constructor() {
@@ -25,24 +24,23 @@ class App extends Component {
 	// This function creates an object to save the firebase based on state.
 	saveToDb = () => {
 		const dbRef = firebase.database().ref('user');
-		const { paycheck, savings, days, total } = this.state;
+		const { paycheck, savings, days, total, dailybudget } = this.state;
 		const dataToStoreInFb = {
 			total: total,
 			daysToNextCheck: days,
 			paycheck: paycheck,
 			amountToSave: savings,
+			dailybudget: dailybudget,
 		};
 		dbRef.update(dataToStoreInFb);
 	};
 
 	// grabs calender date from the calender component and adds it to state
-	getCalenderDate = (passedDate) => {
-		this.setState({
-			calendarDate: passedDate,
-		});
-	};
-
-
+	// getCalenderDate = (passedDate) => {
+	// 	this.setState({
+	// 		calendarDate: passedDate,
+	// 	});
+	// };
 
 	// this function grabs all input values from app.js and adds it to state
 	handleUserInput = (event) => {
@@ -118,11 +116,16 @@ class App extends Component {
 							</form>
 							<div class="paycheckInfo">
 								<p className="dailyInfo">
-									You have <span>{this.state.days}</span> days till your next paycheck
+									You have <span>{this.state.days}</span> days till your next
+									paycheck
 								</p>
-								<p className="dailyInfo">Your last paycheck was for $<span>{this.state.paycheck}</span> </p>
+								<p className="dailyInfo">
+									Your last paycheck was for $<span>{this.state.paycheck}</span>{' '}
+								</p>
 
-								<p className="dailyInfo">You saved <span>${this.state.savings}</span> </p>
+								<p className="dailyInfo">
+									You saved <span>${this.state.savings}</span>{' '}
+								</p>
 							</div>
 						</div>
 
@@ -131,15 +134,16 @@ class App extends Component {
 							<div class="budget">
 								<DisplayMoney />
 								<p className="dailyInfo">
-								Your Daily Budget is:
-								<span> ${this.state.dailybudget.toFixed(2)}</span>
+									Your Daily Budget is:
+									<span> ${this.state.dailybudget.toFixed(2)}</span>
 								</p>
 							</div>
+							<NewCalendar />
 							<TransactionRecords />
 						</div>
 					</div>
 				</main>
-			
+
 				<Footer />
 			</div>
 		);
