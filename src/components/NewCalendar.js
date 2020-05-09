@@ -36,13 +36,16 @@ class NewCalendar extends Component {
 
 	render() {
 		return (
-			<input
-				onChange={this.whenDateChanges}
-				type="date"
-				id="start"
-				name="trip-start"
-				value={this.state.today}
-			/>
+			<div>
+				<label htmlFor="transactions">Pick date to add transactions</label>
+				<input
+					onChange={this.whenDateChanges}
+					type="date"
+					id="transactions"
+					name="transactions"
+					value={this.state.today}
+				/>
+			</div>
 		);
 	}
 }

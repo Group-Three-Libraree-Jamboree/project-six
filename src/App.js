@@ -85,10 +85,9 @@ class App extends Component {
 
 				<main>
 					<div className="wrapper">
-						<div className="half">
-							
-
+						<div className="sections">
 							<form className="paymentSubmit" onSubmit={this.calcTotal}>
+								<h3>Income</h3>
 								<label htmlFor="paycheck">How much is your paycheck?</label>
 								<input
 									type="number"
@@ -112,25 +111,37 @@ class App extends Component {
 									name="savings"
 									onChange={this.handleUserInput}
 								></input>
-								<label htmlFor="dailyExpenses">Enter Daily Expenses:</label>
-								<input
-									type="number"
-									id="dailyExpenses"
-									name="dailyExpenses"
-									onChange={this.handleUserInput}
-								></input>
 								<button className="nextButton" type="submit">
-									Next
+									Add Paycheck
 								</button>
 							</form>
+							<div class="paycheckInfo">
+								<p className="dailyInfo">
+									You have <span>{this.state.days}</span> days till your next
+									paycheck
+								</p>
+								<p className="dailyInfo">
+									Your last paycheck was for $<span>{this.state.paycheck}</span>{' '}
+								</p>
+
+								<p className="dailyInfo">
+									You saved <span>${this.state.savings}</span>{' '}
+								</p>
+							</div>
 						</div>
-						<div className="half">
-							<p className="dailyInfo">
-								Your daily budget is:
-								<span> ${this.state.dailybudget.toFixed(2)}</span>
-							</p>
-							<DisplayMoney />
+
+						<div class="budgetSection">
+							<h3>Budget</h3>
+							<div class="budget">
+								<DisplayMoney />
+								<p className="dailyInfo">
+									Your Daily Budget is:
+									<span> ${this.state.dailybudget.toFixed(2)}</span>
+								</p>
+								<DisplayMoney />
+							</div>
 							<NewCalendar />
+							<TransactionRecords />
 						</div>
 					</div>
 				</main>

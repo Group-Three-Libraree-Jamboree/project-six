@@ -1,0 +1,43 @@
+
+.budgetSection {
+    width: 50vw;
+    .dailyInfo:nth-child(2) {
+        margin-left: 20px;
+    }
+}
+
+.budget {
+    display: flex;
+    font-size: 3rem;
+}
+
+.dailyInfo {
+    font-size: 2rem;
+    
+    span {
+        font-size: 2.4rem;
+        color: $accentOne;
+    }
+}
+
+.addExpense {
+    margin-top: 60px;
+}
+
+.expenseInfo {
+    display: flex;
+}
+
+.expenseInfo input {
+    width: 250px;
+}
+.expenseInfo input:nth-child(2) {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+button.add,
+button.remove {
+    width: 40px;
+    height: 40px;
+}

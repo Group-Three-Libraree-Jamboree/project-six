@@ -2,27 +2,41 @@
 main{
 	min-height: 74vh;
 
-.wrapper{
-	display: flex;
-}
-.react-datepicker__input-container > input:nth-child(1){
-	min-width: 200px;
-}
+	.wrapper{
+		display: flex;
+	}
 
-.half{
-	width: 50%;
-	border: 3px solid $accentOne;
-	padding: 1rem;
-	border-radius: 3px;
-}
+	h3 {
+		font-size: 2.2rem;
+		font-weight: bold;
+		margin-bottom: 2rem;
+	}
 
-.half:first-of-type{
-	margin-right: 10px;
-}
+	.react-datepicker__input-container > input:nth-child(1){
+		min-width: 200px;
+	}
 
-.nextButton{
-	margin-top: 1.5rem;
-}
+	.sections {
+		width: 40%;
+		padding: 1rem;
+		border-radius: 3px;
+	}
+
+	.half:first-of-type{
+		margin-right: 10px;
+	}
+
+	.nextButton {
+		margin-top: 0.2rem;
+	}
+	
+	.paycheckInfo {
+		margin-top: 3rem;
+	}
+
+	.dailyInfo {
+		padding: 5px 0px;
+	}
 
 }
 
