@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import firebase from './components/firebase';
 import Header from './components/Header';
-// import Calendar from './components/Calendar';
+import NewCalendar from './components/NewCalendar';
 import DisplayMoney from './components/DisplayMoney';
 import TransactionRecords from './components/TransactionRecords';
 import Footer from './components/Footer';
 import './App.scss';
-
 
 class App extends Component {
 	constructor() {
@@ -36,13 +35,11 @@ class App extends Component {
 	};
 
 	// grabs calender date from the calender component and adds it to state
-	getCalenderDate = (passedDate) => {
-		this.setState({
-			calendarDate: passedDate,
-		});
-	};
-
-
+	// getCalenderDate = (passedDate) => {
+	// 	this.setState({
+	// 		calendarDate: passedDate,
+	// 	});
+	// };
 
 	// this function grabs all input values from app.js and adds it to state
 	handleUserInput = (event) => {
@@ -78,6 +75,8 @@ class App extends Component {
 		);
 	};
 
+	
+
 	render() {
 		return (
 			<div className="App">
@@ -87,6 +86,8 @@ class App extends Component {
 				<main>
 					<div className="wrapper">
 						<div className="half">
+							
+
 							<form className="paymentSubmit" onSubmit={this.calcTotal}>
 								<label htmlFor="paycheck">How much is your paycheck?</label>
 								<input
@@ -129,10 +130,11 @@ class App extends Component {
 								<span> ${this.state.dailybudget.toFixed(2)}</span>
 							</p>
 							<DisplayMoney />
+							<NewCalendar />
 						</div>
 					</div>
 				</main>
-			
+
 				<Footer />
 			</div>
 		);
