@@ -11,9 +11,9 @@ function Transaction(props) {
   }
 
   return (
-    <li key={props.index}>
-      <span>Transaction description: {props.description}|</span><span>Transaction amount: {props.amount}</span>
-      <button onClick={deleteItem}>Remove transaction</button>
+    <li class="displayTransactions" key={props.index}>
+      <button class="remove" onClick={deleteItem}>-</button>
+      <span>{props.description}: {props.amount}</span>  
     </li>
   )
 }
