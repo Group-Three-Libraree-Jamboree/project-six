@@ -3,7 +3,7 @@ import firebase from './components/firebase';
 import Header from './components/Header';
 // import Calendar from './components/Calendar';
 import DisplayMoney from './components/DisplayMoney';
-import TransactionRecords from './components/TransactionRecords';
+// import TransactionRecords from './components/TransactionRecords';
 import Footer from './components/Footer';
 import './App.scss';
 
@@ -124,10 +124,11 @@ class App extends Component {
 							</form>
 						</div>
 						<div className="half">
-							<p className="dailyInfo">
+						{/* moved className="dailyInfo" to <DisplayMoney /> */}
+							{/* <p className="dailyInfo">
 								Your daily budget is:
 								<span> ${this.state.dailybudget.toFixed(2)}</span>
-							</p>
+							</p> */}
 							<DisplayMoney />
 						</div>
 					</div>

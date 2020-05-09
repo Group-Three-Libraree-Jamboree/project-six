@@ -9,6 +9,7 @@ class TransactionRecords extends Component {
             transDescr: "",
             transAmount: 0,
             allTransactions: [],
+            sumOfExpenditures: 0,
         }
     }
     //onChange grabs values from input fields (transDescr and transAmount) and saves to the state
@@ -42,8 +43,29 @@ class TransactionRecords extends Component {
             }
             this.setState({
                 allTransactions: allTransactions,
-            });
+            },
+                ()=>{
+                    //updates state to reflect the total amount spent so far
+                    this.sumTransactions()
+                }
+            );
         });
+    }
+    
+    //adds all expenditures to each other and updates state.sumOfExpenditures. Returns a number
+    sumTransactions = ()=>{
+        //sums up all transactions so far 
+        let total = 0;
+        this.state.allTransactions.forEach((item) => {
+            item = parseInt(item.transAmount);
+            total += item;
+        });
+        this.setState({
+            sumOfExpenditures: total
+        }) 
+
+        //passes sumOfExpenditures to the parent
+        this.props.passTotalExpenditures(total);
     }
 
     //prints to the page all paired items (amount and description) from this.state.allTransactions
@@ -53,7 +75,7 @@ class TransactionRecords extends Component {
                 {
                     this.state.allTransactions.map((trans, index) => {
                         return(
-                            <Transaction description={trans.transName} amount={trans.transAmount} index={trans.transId}/>
+                            <Transaction key={index} description={trans.transName} amount={trans.transAmount} index={trans.transId}/>
                         )
                     })
                 }
@@ -71,7 +93,7 @@ class TransactionRecords extends Component {
                     onChange={this.handleChange}
                 />
                 <input
-                    type="number"
+                    type="text"
                     name="transAmount"
                     onChange={this.handleChange}
                 />
