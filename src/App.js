@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import firebase from './components/firebase';
 import Header from './components/Header';
 // import Calendar from './components/Calendar';
+import DisplayMoney from './components/DisplayMoney';
 import TransactionRecords from './components/TransactionRecords';
 import Footer from './components/Footer';
 import './App.scss';
-import DisplayMoney from './components/DisplayMoney';
+
 
 class App extends Component {
 	constructor() {
@@ -131,7 +132,7 @@ class App extends Component {
 						</div>
 					</div>
 				</main>
-				<TransactionRecords />
+			
 				<Footer />
 			</div>
 		);

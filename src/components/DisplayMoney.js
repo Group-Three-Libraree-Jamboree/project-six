@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
+import TransactionRecords from './TransactionRecords';
 
 class DisplayMoney extends Component {
 	constructor() {
@@ -12,6 +13,7 @@ class DisplayMoney extends Component {
 		};
 	}
 
+    // grabs data from DB and loops though it, pushing it to state so that it can be displayed on screen. 
 	componentDidMount() {
 		const dbRef = firebase.database().ref('user');
 		dbRef.on('value', (result) => {
@@ -38,6 +40,8 @@ class DisplayMoney extends Component {
 					</p>
 					<p className="dailyInfo">Your last paycheck was for <span>{paycheck}</span> </p>
 				</div>
+                <TransactionRecords />
+                
 			</div>
 		);
 	}
