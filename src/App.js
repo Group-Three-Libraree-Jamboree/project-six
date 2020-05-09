@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import firebase from './components/firebase';
 import Header from './components/Header';
 import Calendar from './components/Calendar';
-import Expenses from './components/Expenses';
+// import Expenses from './components/Expenses';
+import TransactionRecords from './components/TransactionRecords';
+
 import Footer from './components/Footer';
 import './App.scss';
 import DisplayMoney from './components/DisplayMoney';
@@ -148,6 +150,9 @@ class App extends Component {
 							Your daily budget is:<span> {this.state.dailybudget}</span>
 						</p>
 						<DisplayMoney />
+
+						{/* <Calendar /> */}
+						<TransactionRecords />
 					</div>
 				</main>
 
