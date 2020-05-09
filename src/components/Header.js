@@ -4,7 +4,7 @@ const Header = () => {
 	return (
 		<header>
 			<h1>Daily Budget Calculator</h1>
-			<p>The next best thing since online banking</p>
+			<p>Helping you save for a rainy day.</p>
 		</header>
 	);
 };

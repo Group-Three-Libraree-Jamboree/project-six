@@ -36,7 +36,8 @@ class Calendar extends React.Component {
 
 	render() {
 		return (
-			<div className="wrapper">
+			<div>
+				<label>Pick a date:</label>
 				<DatePicker
 					selected={this.state.startDate}
 					onChange={this.handleChange}
