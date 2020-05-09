@@ -37,7 +37,7 @@ class NewCalendar extends Component {
 	render() {
 		return (
 			<div>
-				<label htmlFor="transactions">Pick date to add transactions</label>
+				<label htmlFor="transactions">Pick date to add Expense</label>
 				<input
 					onChange={this.whenDateChanges}
 					type="date"
