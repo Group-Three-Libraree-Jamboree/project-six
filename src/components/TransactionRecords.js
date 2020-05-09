@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
+import Transaction from './RemoveTrans';
 
 class TransactionRecords extends Component {
     constructor(){
@@ -29,6 +30,7 @@ class TransactionRecords extends Component {
         dbRef.push(transactionsToStoreInFb);
     }
 
+
     //when the page is rendered, retrieves all "Transactions" records from firebase, creates a copy and saves to state (this.state.allTransactions)
     componentDidMount() {
         const dbRef = firebase.database().ref("Transactions");
@@ -36,7 +38,7 @@ class TransactionRecords extends Component {
             const data = result.val();
             const allTransactions = [];
             for (let key in data) {
-                allTransactions.push(data[key]);
+                allTransactions.push({transName:data[key].description, transAmount:data[key].amount, transId:key});
             }
             this.setState({
                 allTransactions: allTransactions,
@@ -47,13 +49,11 @@ class TransactionRecords extends Component {
     //prints to the page all paired items (amount and description) from this.state.allTransactions
     appendTransaction = () => {
         return (
-            <ul>
+            <ul className="transactions">
                 {
                     this.state.allTransactions.map((trans, index) => {
                         return(
-                            <div key={index}>
-                                <span>Transaction description: {trans.description}|</span><span>Transaction amount: {trans.amount}</span>
-                            </div>
+                            <Transaction description={trans.transName} amount={trans.transAmount} index={trans.transId}/>
                         )
                     })
                 }
