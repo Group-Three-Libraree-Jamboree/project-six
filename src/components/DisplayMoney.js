@@ -7,8 +7,6 @@ class DisplayMoney extends Component {
 		super();
 		this.state = {
 			total: 0,
-			daysToNextCheck: 0,
-			paycheck: 0,
 			amountToSave: 0,
 		};
 	}
@@ -30,18 +28,10 @@ class DisplayMoney extends Component {
 	}
 
 	render() {
-		const { total, daysToNextCheck, paycheck } = this.state;
+		const { total } = this.state;
 		return (
 			<div>
-				<div>
-					<p className="dailyInfo">You currently have <span>{total}</span></p>
-					<p className="dailyInfo">
-						You have <span>{daysToNextCheck}</span> days till your next paycheck
-					</p>
-					<p className="dailyInfo">Your last paycheck was for <span>{paycheck}</span> </p>
-				</div>
-                <TransactionRecords />
-                
+				<p className="dailyInfo">Budget for the Month $<span>{total}</span></p>
 			</div>
 		);
 	}

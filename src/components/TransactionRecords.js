@@ -64,22 +64,26 @@ class TransactionRecords extends Component {
     render(){
         return(
             <div>
-            <h2>Record your last transaction:</h2>
-                <input
-                    type="text"
-                    name="transDescr"
-                    onChange={this.handleChange}
-                />
-                <input
-                    type="number"
-                    name="transAmount"
-                    onChange={this.handleChange}
-                />
-
-                <button
-                    type="button"
-                    onClick={this.addTransactionToDb}>+Add
-                </button>
+            <h3 class="addExpense">Add Expense</h3>
+                <div class="expenseInfo">
+                    <input
+                        type="text"
+                        name="transDescr"
+                        onChange={this.handleChange}
+                        placeholder= "Expense description"
+                    />
+                    <input
+                        type="number"
+                        name="transAmount"
+                        onChange={this.handleChange}
+                        placeholder= "Expense amount"
+                    />
+                    <button
+                        class="add"
+                        type="button"
+                        onClick={this.addTransactionToDb}>+
+                    </button>
+                </div>
 
                 {/* appends all transaction records to the page */}
                 {this.appendTransaction()}
