@@ -108,29 +108,14 @@ class App extends Component {
 									Add Paycheck
 								</button>
 							</form>
-							<div className="paycheckInfo">
-								<p className="dailyInfo">
-									You have <span>{this.state.days}</span> days till your next
-									paycheck
-								</p>
-								<p className="dailyInfo">
-									Your last paycheck was for $<span>{this.state.paycheck}</span>{' '}
-								</p>
-
-								<p className="dailyInfo">
-									You saved <span>${this.state.savings}</span>{' '}
-								</p>
-							</div>
+					
 						</div>
 
 						<div className="budgetSection">
 							<h3>Budget</h3>
 							<div className="budget">
 								<DisplayMoney />
-								<p className="dailyInfo">
-									Your Daily Budget is:
-									<span> ${this.state.dailybudget.toFixed(2)}</span>
-								</p>
+								
 							</div>
 							<NewCalendar />
 							<TransactionRecords />
