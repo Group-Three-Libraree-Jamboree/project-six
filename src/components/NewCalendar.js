@@ -4,8 +4,11 @@ class NewCalendar extends Component {
 	constructor() {
 		super();
 		this.state = {
+			todayFull: new Date(),
 			today: '',
 			selectedDate: '',
+			fullSelected: new Date(),
+			days: 0,
 		};
 	}
 
@@ -19,31 +22,53 @@ class NewCalendar extends Component {
 			('0' + today.getDate()).slice(-2);
 
 		this.setState({
+			todayFull: today,
 			today: date,
 		});
 	};
 
 	whenDateChanges = (e) => {
 		const pickedDate = e.target.value;
-		this.setState({
-			today: pickedDate,
-		});
+		const fullSelectedDate = new Date(e.target.value);
+		this.setState(
+			{
+				today: pickedDate,
+				fullSelected: fullSelectedDate,
+			},
+			() => {
+				const d1 = this.state.fullSelected;
+				const d2 = this.state.todayFull;
+
+				this.setState({
+					days: parseInt((d1 - d2) / (24 * 3600 * 1000)),
+				}, ()=> {
+					this.getDaysLeft()
+				});
+			}
+		);
 	};
 
 	componentDidMount() {
 		this.getCurrentDate();
+		this.getDaysLeft();
 	}
+
+	getDaysLeft = (day) => {
+		day = this.state.days;
+		this.props.getDaysLeft(day);
+	};
 
 	render() {
 		return (
 			<div>
-				<label htmlFor="transactions">Pick date to add Expense</label>
+				<label htmlFor="transactions">Next Paycheck</label>
 				<input
 					onChange={this.whenDateChanges}
 					type="date"
 					id="transactions"
 					name="transactions"
 					value={this.state.today}
+					min = {this.state.today}
 				/>
 			</div>
 		);

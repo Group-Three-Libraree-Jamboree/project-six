@@ -69,6 +69,14 @@ class App extends Component {
 		);
 	};
 
+
+getDaysLeft = (days) => {
+	this.setState({
+		days:days
+	})
+}
+
+
 	render() {
 		return (
 			<div className="App">
@@ -87,14 +95,15 @@ class App extends Component {
 									onChange={this.handleUserInput}
 									required
 								></input>
-								<label htmlFor="days">Days until next pay period?</label>
+								{/* <label htmlFor="days">Days until next pay period?</label>
 								<input
 									type="number"
 									id="days"
 									name="days"
 									onChange={this.handleUserInput}
 									required
-								></input>
+								></input> */}
+								<NewCalendar getDaysLeft={this.getDaysLeft} />
 								<label htmlFor="savings">How much are you saving?</label>
 								<input
 									type="number"
@@ -114,7 +123,6 @@ class App extends Component {
 								<DisplayMoney />
 							</div>
 
-							<NewCalendar />
 							<TransactionRecords />
 						</div>
 					</div>
