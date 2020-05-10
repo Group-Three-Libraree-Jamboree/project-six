@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import firebase from './components/firebase';
 import Header from './components/Header';
-// import Calendar from './components/Calendar';
+import NewCalendar from './components/NewCalendar';
 import DisplayMoney from './components/DisplayMoney';
 import TransactionRecords from './components/TransactionRecords';
 import Footer from './components/Footer';
@@ -82,7 +82,7 @@ class App extends Component {
 		return (
 			<div className="App">
 				<Header />
-				{/* You need to install Calendar in iTerm: npm install react-datepicker --save */}
+			
 
 				<main>
 					<div className="wrapper">
@@ -135,7 +135,7 @@ class App extends Component {
 								<span> ${this.state.dailybudget.toFixed(2)}</span>
 								</p>
 							</div>
-							<TransactionRecords />
+							{/* <TransactionRecords /> */}
 						</div>
 					</div>
 				</main>
