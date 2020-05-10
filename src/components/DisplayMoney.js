@@ -39,7 +39,7 @@ class DisplayMoney extends Component {
 	}
 
 	calcDailyBudget = () => {
-		const dailybudget = this.state.total / this.state.daysToNextCheck;
+		const dailybudget = (this.state.total - this.state.amountToSave) / this.state.daysToNextCheck;
 		this.setState({
 			dailybudget: dailybudget,
 		});
@@ -72,8 +72,8 @@ class DisplayMoney extends Component {
     };
     
     subtractExpenses = () => {
-const { total, transactionsAmount, amountToSave, daysToNextCheck } = this.state;
-const newTotal = (total - transactionsAmount - amountToSave) / daysToNextCheck; 
+const { total, transactionsAmount, daysToNextCheck } = this.state;
+const newTotal = (total - transactionsAmount) / daysToNextCheck; 
 
 this.setState({
     newTotal:newTotal,
