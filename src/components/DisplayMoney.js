@@ -8,10 +8,13 @@ class DisplayMoney extends Component {
 		this.state = {
 			total: 0,
 			amountToSave: 0,
+			daysToNextCheck: 0,
+			paycheck: 0,
+			dailybudget: 0,
 		};
 	}
 
-    // grabs data from DB and loops though it, pushing it to state so that it can be displayed on screen. 
+	// grabs data from DB and loops though it, pushing it to state so that it can be displayed on screen.
 	componentDidMount() {
 		const dbRef = firebase.database().ref('user');
 		dbRef.on('value', (result) => {
@@ -22,16 +25,28 @@ class DisplayMoney extends Component {
 
 				this.setState({
 					[key]: data[key],
-				});
+				}, ()=> {
+                    this.calcDailyBudget();
+                });
 			}
 		});
 	}
 
+	calcDailyBudget = () => {
+		console.log('something');
+		const dailybudget = this.state.total / this.state.daysToNextCheck;
+		this.setState({
+			dailybudget: dailybudget,
+		});
+	};
+
 	render() {
-		const { total } = this.state;
+		const { total, paycheck } = this.state;
 		return (
 			<div>
-				<p className="dailyInfo">Budget for the Month $<span>{total}</span></p>
+				<p className="dailyInfo">
+					Your Total budget is $<span>{paycheck}</span>
+				</p>
 			</div>
 		);
 	}

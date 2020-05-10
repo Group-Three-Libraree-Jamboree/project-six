@@ -53,7 +53,7 @@ class TransactionRecords extends Component {
                 {
                     this.state.allTransactions.map((trans, index) => {
                         return(
-                            <Transaction description={trans.transName} amount={trans.transAmount} index={trans.transId}/>
+                            <Transaction key={index} description={trans.transName} amount={trans.transAmount} index={trans.transId}/>
                         )
                     })
                 }
@@ -64,8 +64,8 @@ class TransactionRecords extends Component {
     render(){
         return(
             <div>
-            <h3 class="addExpense">Add Expense</h3>
-                <div class="expenseInfo">
+            <h3 className="addExpense">Add Expense</h3>
+                <div className="expenseInfo">
                     <input
                         type="text"
                         name="transDescr"
@@ -79,7 +79,7 @@ class TransactionRecords extends Component {
                         placeholder= "Expense amount"
                     />
                     <button
-                        class="add"
+                        className="add"
                         type="button"
                         onClick={this.addTransactionToDb}>+
                     </button>
