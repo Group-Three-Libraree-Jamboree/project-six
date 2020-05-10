@@ -38,7 +38,7 @@ class DisplayMoney extends Component {
 	}
 
 	calcDailyBudget = () => {
-		const dailybudget = this.state.total / this.state.daysToNextCheck;
+		const dailybudget = (this.state.total - this.state.amountToSave) / this.state.daysToNextCheck;
 		this.setState({
 			dailybudget: dailybudget,
 		});
@@ -59,6 +59,18 @@ class DisplayMoney extends Component {
 
 			// adds up all numbers in the array
 			const reducer = (accumulator, currentValue) => accumulator + currentValue;
+           
+            // Checks to see if the array empty if so it sets the value to 0
+			this.setState({
+				transactionsAmount: sumOfEx.length > 0 ? sumOfEx.reduce(reducer) : 0,
+			}, ()=> {this.subtractExpenses()});
+        });     
+    };
+    
+    subtractExpenses = () => {
+const { total, transactionsAmount, daysToNextCheck } = this.state;
+const newTotal = (total - transactionsAmount) / daysToNextCheck; 
+
 
 			// Checks to see if the array empty if so it sets the value to 0
 			this.setState(
