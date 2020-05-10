@@ -43,7 +43,14 @@ class App extends Component {
 	};
 
 	calcTotal = () => {
+		//clears the inputs onSubmit. Uncomment preventdefault if we want to keep inputs 
 		// e.preventDefault();
+
+		//making sure Saving input is not larger than Paycheck input
+		if (this.state.paycheck < this.state.savings){
+			return alert("You cannot save more than your paycheck. Sorry...")
+		}
+
 		const total =
 			this.state.paycheck - this.state.savings - this.state.dailyExpenses;
 		this.setState(
