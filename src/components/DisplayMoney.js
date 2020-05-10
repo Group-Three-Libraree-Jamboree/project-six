@@ -72,8 +72,9 @@ class DisplayMoney extends Component {
     };
     
     subtractExpenses = () => {
-const { total, transactionsAmount } = this.state;
-const newTotal = total - transactionsAmount ;
+const { total, transactionsAmount, amountToSave, daysToNextCheck } = this.state;
+const newTotal = (total - transactionsAmount - amountToSave) / daysToNextCheck; 
+
 this.setState({
     newTotal:newTotal,
 })
@@ -84,9 +85,9 @@ this.setState({
 			total,
 			paycheck,
 			daysToNextCheck,
+			amountToSave,
+			newTotal,
 			dailybudget,
-            amountToSave,
-            newTotal,
 		} = this.state;
 		return (
 			<div>

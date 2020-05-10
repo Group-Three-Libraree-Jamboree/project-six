@@ -35,7 +35,6 @@ class App extends Component {
 		dbRef.update(dataToStoreInFb);
 	};
 
-
 	// this function grabs all input values from app.js and adds it to state
 	handleUserInput = (event) => {
 		console.log(event.target.value);
@@ -74,7 +73,6 @@ class App extends Component {
 		return (
 			<div className="App">
 				<Header />
-			
 
 				<main>
 					<div className="wrapper">
@@ -108,20 +106,16 @@ class App extends Component {
 									Add Paycheck
 								</button>
 							</form>
-					
 						</div>
 
 						<div className="budgetSection">
 							<h3>Budget</h3>
 							<div className="budget">
 								<DisplayMoney />
-								
 							</div>
-
 
 							<NewCalendar />
 							<TransactionRecords />
-
 						</div>
 					</div>
 				</main>
