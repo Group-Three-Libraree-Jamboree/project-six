@@ -8,6 +8,9 @@ class DisplayMoney extends Component {
 		this.state = {
 			total: 0,
 			amountToSave: 0,
+			dailyBudget: 0,
+            daysToNextCheck:0,
+            paycheck:0,
 		};
 	}
 
@@ -22,16 +25,56 @@ class DisplayMoney extends Component {
 
 				this.setState({
 					[key]: data[key],
+				}, ()=>{
+					//transforms daysToNextCheck from a string to a number
+					let days = 0
+					days = parseInt(this.state.daysToNextCheck);
+					this.setState({
+						daysToNextCheck: days
+					}, ()=>{
+						//updates daily budget
+						this.setState({
+							dailyBudget: this.state.total / this.state.daysToNextCheck
+						})
+					})
 				});
 			}
 		});
 	}
 
+	//receives a total amount spent on items so far and updates the total.
+	//then updates the daily budget
+	passTotalExpenditures = (totalSpentSoFar)=>{
+		console.log(totalSpentSoFar);
+		this.setState({
+			total: this.state.total - totalSpentSoFar,
+		},
+		()=>{
+				this.setState({
+					dailyBudget: this.state.total / this.state.daysToNextCheck
+				})
+			}
+		)
+	}
+
 	render() {
-		const { total } = this.state;
+		const { total, daysToNextCheck,paycheck } = this.state;
 		return (
 			<div>
-				<p className="dailyInfo">Budget for the Month $<span>{total}</span></p>
+				<p className="dailyInfo">Pay After Savings $<span>{total}</span></p>
+				<div>
+					<p className='dailyInfo'>
+						Your daily budget is:
+						<span>{this.state.dailyBudget}</span>
+					</p>
+					<p className="dailyInfo">You currently have to spend <span>{total} </span></p>
+					<p className="dailyInfo">
+						You have <span>{daysToNextCheck}</span> days till your next paycheck
+					</p>
+					<p className="dailyInfo">Your last paycheck was for <span>{paycheck}</span> </p>
+				</div>
+                <TransactionRecords passTotalExpenditures={this.passTotalExpenditures}/>
+                
 			</div>
 		);
 	}

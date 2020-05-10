@@ -80,7 +80,7 @@ class App extends Component {
 		return (
 			<div className="App">
 				<Header />
-				{/* You need to install Calendar in iTerm: npm install react-datepicker --save */}
+			
 
 				<main>
 					<div className="wrapper">
@@ -138,8 +138,11 @@ class App extends Component {
 									<span> ${this.state.dailybudget.toFixed(2)}</span>
 								</p>
 							</div>
+
+
 							<NewCalendar />
 							<TransactionRecords />
+
 						</div>
 					</div>
 				</main>
