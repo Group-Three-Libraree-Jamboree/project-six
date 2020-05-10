@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
-import TransactionRecords from './TransactionRecords';
 
 class DisplayMoney extends Component {
 	constructor() {
@@ -90,27 +89,25 @@ class DisplayMoney extends Component {
 
 	render() {
 		const {
-			total,
 			paycheck,
 			daysToNextCheck,
 			amountToSave,
 			newTotal,
-			dailybudget,
 		} = this.state;
 		return (
 			<div>
 				<ul className="dailyInfo">
 					<li>
-						Your started with $<span>{paycheck}</span>
+						Your started with $<span>{paycheck.toFixed(2)}</span>
 					</li>
 					<li>
-						You plan to save <span>{amountToSave}</span>
+						You plan to save $<span>{amountToSave.toFixed(2)}</span>
 					</li>
 					<li>
 						You have <span>{daysToNextCheck}</span> days till your next paycheck
 					</li>
 					<li>
-						Your Daily Budget is $<span>{newTotal}</span>
+						Your Daily Budget is $<span>{newTotal.toFixed(2)}</span>
 					</li>
 				</ul>
 			</div>

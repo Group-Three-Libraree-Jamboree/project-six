@@ -7,7 +7,7 @@ class TransactionRecords extends Component {
         super();
         this.state = {
             transDescr: "",
-            transAmount: 0,
+            transAmount: "",
             allTransactions: [],
         }
     }
@@ -28,6 +28,12 @@ class TransactionRecords extends Component {
             amount: transAmount,
         };
         dbRef.push(transactionsToStoreInFb);
+
+        // empty input fields on Submit
+        this.setState({
+            transDescr: "",
+            transAmount: "",
+        })
     }
 
 
@@ -38,7 +44,7 @@ class TransactionRecords extends Component {
             const data = result.val();
             const allTransactions = [];
             for (let key in data) {
-                allTransactions.push({transName:data[key].description, transAmount:data[key].amount, transId:key});
+                allTransactions.push({ transName: data[key].description, transAmount: data[key].amount, transId:key});
             }
             this.setState({
                 allTransactions: allTransactions,
@@ -71,12 +77,14 @@ class TransactionRecords extends Component {
                         name="transDescr"
                         onChange={this.handleChange}
                         placeholder= "Expense description"
+                        value={this.state.transDescr}
                     />
                     <input
                         type="number"
                         name="transAmount"
                         onChange={this.handleChange}
                         placeholder= "Expense amount"
+                        value={this.state.transAmount}
                     />
                     <button
                         className="add"

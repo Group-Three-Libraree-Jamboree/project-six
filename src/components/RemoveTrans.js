@@ -13,10 +13,10 @@ function Transaction(props) {
   return (
     <li className="displayTransactions" key={props.index}>
       <button className="remove" onClick={deleteItem}>-</button>
-      <span>{props.description}: {props.amount}</span>  
+      <span>{props.description}: ${props.amount}</span>  
     </li>
   )
 }
 
 
-export default Transaction
+export default Transaction;

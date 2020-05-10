@@ -89,6 +89,7 @@ getDaysLeft = (days) => {
 								<h3>Income</h3>
 								<label htmlFor="paycheck">How much is your paycheck?</label>
 								<input
+								placeholder="e.g. 6,000.00"
 									type="number"
 									id="paycheck"
 									name="paycheck"
@@ -106,6 +107,7 @@ getDaysLeft = (days) => {
 								<NewCalendar getDaysLeft={this.getDaysLeft} />
 								<label htmlFor="savings">How much are you saving?</label>
 								<input
+								placeholder="e.g. 1,000.00"
 									type="number"
 									id="savings"
 									name="savings"
