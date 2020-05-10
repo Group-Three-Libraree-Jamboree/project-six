@@ -40,6 +40,7 @@ class DisplayMoney extends Component {
 	calcDailyBudget = () => {
 		const dailybudget =
 			(this.state.total - this.state.amountToSave) / this.state.daysToNextCheck;
+
 		this.setState(
 			{
 				dailybudget: dailybudget,
@@ -80,7 +81,10 @@ class DisplayMoney extends Component {
 
 	subtractExpenses = () => {
 		const { total, transactionsAmount, daysToNextCheck } = this.state;
-		const newTotal = (total - transactionsAmount) / daysToNextCheck;
+		let newTotal = (total - transactionsAmount) / daysToNextCheck;
+		//makes sure the value is non NaN
+
+		newTotal = newTotal ? newTotal : 0
 
 		this.setState({
 			newTotal: newTotal,

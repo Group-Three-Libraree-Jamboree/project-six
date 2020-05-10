@@ -24,13 +24,12 @@ class App extends Component {
 	// This function creates an object to save the firebase based on state.
 	saveToDb = () => {
 		const dbRef = firebase.database().ref('user');
-		const { paycheck, savings, days, total, dailybudget } = this.state;
+		const { paycheck, savings, days, total } = this.state;
 		const dataToStoreInFb = {
 			total: total,
 			daysToNextCheck: days,
 			paycheck: paycheck,
 			amountToSave: savings,
-			dailybudget: dailybudget,
 		};
 		dbRef.update(dataToStoreInFb);
 	};
@@ -43,8 +42,8 @@ class App extends Component {
 		});
 	};
 
-	calcTotal = (e) => {
-		e.preventDefault();
+	calcTotal = () => {
+		// e.preventDefault();
 		const total =
 			this.state.paycheck - this.state.savings - this.state.dailyExpenses;
 		this.setState(
