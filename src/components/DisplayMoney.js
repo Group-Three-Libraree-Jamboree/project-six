@@ -8,73 +8,102 @@ class DisplayMoney extends Component {
 		this.state = {
 			total: 0,
 			amountToSave: 0,
-			dailyBudget: 0,
-            daysToNextCheck:0,
-            paycheck:0,
+			daysToNextCheck: 0,
+			paycheck: 0,
+			dailybudget: 0,
+            transactionsAmount: 0,
+            newTotal:0,
 		};
 	}
 
-    // grabs data from DB and loops though it, pushing it to state so that it can be displayed on screen. 
+	// grabs data from DB and loops though it, pushing it to state so that it can be displayed on screen.
 	componentDidMount() {
-		const dbRef = firebase.database().ref('user');
-		dbRef.on('value', (result) => {
+		const userRef = firebase.database().ref('user');
+		userRef.on('value', (result) => {
 			const data = result.val();
 
 			for (let key in data) {
 				// userMoney.push({ [key]: data[key] });
-
-				this.setState({
-					[key]: data[key],
-				}, ()=>{
-					//transforms daysToNextCheck from a string to a number
-					let days = 0
-					days = parseInt(this.state.daysToNextCheck);
-					this.setState({
-						daysToNextCheck: days
-					}, ()=>{
-						//updates daily budget
-						this.setState({
-							dailyBudget: this.state.total / this.state.daysToNextCheck
-						})
-					})
-				});
+				this.setState(
+					{
+						[key]: parseInt(data[key]),
+					},
+					() => {
+						this.calcDailyBudget();
+					}
+				);
 			}
 		});
+
+		this.checkExpenses();
 	}
 
-	//receives a total amount spent on items so far and updates the total.
-	//then updates the daily budget
-	passTotalExpenditures = (totalSpentSoFar)=>{
-		console.log(totalSpentSoFar);
+	calcDailyBudget = () => {
+		const dailybudget = this.state.total / this.state.daysToNextCheck;
 		this.setState({
-			total: this.state.total - totalSpentSoFar,
-		},
-		()=>{
-				this.setState({
-					dailyBudget: this.state.total / this.state.daysToNextCheck
-				})
-			}
-		)
-	}
+			dailybudget: dailybudget,
+		});
+	};
+
+    
+	checkExpenses = () => {
+		const exRef = firebase.database().ref('Transactions');
+		exRef.on('value', (result) => {
+			const tran = result.val();
+
+            // loop through the transactions object and get the amount values and store them in an array
+			const holdTrans = [];
+			for (let key in tran) {
+				holdTrans.push(tran[key].amount);
+            }
+            // turn transaction values from a string to a number 
+            const sumOfEx = holdTrans.map((v) => parseInt(v));
+       
+
+            // adds up all numbers in the array 
+			const reducer = (accumulator, currentValue) => accumulator + currentValue;
+           
+            // Checks to see if the array empty if so it sets the value to 0
+			this.setState({
+				transactionsAmount: sumOfEx.length > 0 ? sumOfEx.reduce(reducer) : 0,
+			}, ()=> {this.subtractExpenses()});
+        });
+        
+    };
+    
+    subtractExpenses = () => {
+const { total, transactionsAmount } = this.state;
+const newTotal = total - transactionsAmount ;
+this.setState({
+    newTotal:newTotal,
+})
+    }
 
 	render() {
-		const { total, daysToNextCheck,paycheck } = this.state;
+		const {
+			total,
+			paycheck,
+			daysToNextCheck,
+			dailybudget,
+            amountToSave,
+            newTotal,
+		} = this.state;
 		return (
 			<div>
-				<p className="dailyInfo">Pay After Savings $<span>{total}</span></p>
-				<div>
-					<p className='dailyInfo'>
-						Your daily budget is:
-						<span>{this.state.dailyBudget}</span>
-					</p>
-					<p className="dailyInfo">You currently have to spend <span>{total} </span></p>
-					<p className="dailyInfo">
+				<ul className="dailyInfo">
+					<li>
+						Your started with $<span>{paycheck}</span>
+					</li>
+					<li>
+						You plan to save <span>{amountToSave}</span>
+					</li>
+					<li>
 						You have <span>{daysToNextCheck}</span> days till your next paycheck
-					</p>
-					<p className="dailyInfo">Your last paycheck was for <span>{paycheck}</span> </p>
-				</div>
-                <TransactionRecords passTotalExpenditures={this.passTotalExpenditures}/>
-                
+					</li>
+					<li>
+						Your Daily Budget is $<span>{newTotal}</span>
+					</li>
+				</ul>
 			</div>
 		);
 	}
