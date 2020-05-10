@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
-import TransactionRecords from './TransactionRecords';
 
 class DisplayMoney extends Component {
 	constructor() {
@@ -11,8 +10,8 @@ class DisplayMoney extends Component {
 			daysToNextCheck: 0,
 			paycheck: 0,
 			dailybudget: 0,
-            transactionsAmount: 0,
-            newTotal:0,
+			transactionsAmount: 0,
+			newTotal: 0,
 		};
 	}
 
@@ -45,50 +44,51 @@ class DisplayMoney extends Component {
 		});
 	};
 
-    
 	checkExpenses = () => {
 		const exRef = firebase.database().ref('Transactions');
 		exRef.on('value', (result) => {
 			const tran = result.val();
 
-            // loop through the transactions object and get the amount values and store them in an array
+			// loop through the transactions object and get the amount values and store them in an array
 			const holdTrans = [];
 			for (let key in tran) {
 				holdTrans.push(tran[key].amount);
-            }
-            // turn transaction values from a string to a number 
-            const sumOfEx = holdTrans.map((v) => parseInt(v));
-       
+			}
+			// turn transaction values from a string to a number
+			const sumOfEx = holdTrans.map((i) => parseInt(i));
 
-            // adds up all numbers in the array 
+			// adds up all numbers in the array
 			const reducer = (accumulator, currentValue) => accumulator + currentValue;
-           
-            // Checks to see if the array empty if so it sets the value to 0
-			this.setState({
-				transactionsAmount: sumOfEx.length > 0 ? sumOfEx.reduce(reducer) : 0,
-			}, ()=> {this.subtractExpenses()});
-        });
-        
-    };
-    
-    subtractExpenses = () => {
-const { total, transactionsAmount, amountToSave, daysToNextCheck } = this.state;
-const newTotal = (total - transactionsAmount - amountToSave) / daysToNextCheck; 
 
-this.setState({
-    newTotal:newTotal,
-})
-    }
+			// Checks to see if the array empty if so it sets the value to 0
+			this.setState(
+				{
+					transactionsAmount: sumOfEx.length > 0 ? sumOfEx.reduce(reducer) : 0,
+				},
+				() => {
+					this.subtractExpenses();
+				}
+			);
+		});
+	};
 
-	render() {
+	subtractExpenses = () => {
 		const {
 			total,
-			paycheck,
-			daysToNextCheck,
+			transactionsAmount,
 			amountToSave,
-			newTotal,
-			dailybudget,
+			daysToNextCheck,
 		} = this.state;
+		const newTotal =
+			(total - transactionsAmount - amountToSave) / daysToNextCheck;
+
+		this.setState({
+			newTotal: newTotal,
+		});
+	};
+
+	render() {
+		const { paycheck, daysToNextCheck, amountToSave, newTotal } = this.state;
 		return (
 			<div>
 				<ul className="dailyInfo">
