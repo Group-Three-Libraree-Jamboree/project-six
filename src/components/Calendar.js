@@ -34,6 +34,8 @@ class Calendar extends React.Component {
 		this.props.getCalenderDate(passDate);
 	};
 
+	
+
 	render() {
 		return (
 			<div>

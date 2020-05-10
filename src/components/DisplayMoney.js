@@ -39,12 +39,17 @@ class DisplayMoney extends Component {
 	}
 
 	calcDailyBudget = () => {
-		const dailybudget = (this.state.total - this.state.amountToSave) / this.state.daysToNextCheck;
-		this.setState({
-			dailybudget: dailybudget,
-		});
+		const dailybudget =
+			(this.state.total - this.state.amountToSave) / this.state.daysToNextCheck;
+		this.setState(
+			{
+				dailybudget: dailybudget,
+			},
+			() => {
+				this.subtractExpenses();
+			}
+		);
 	};
-
 
 	checkExpenses = () => {
 		const exRef = firebase.database().ref('Transactions');
@@ -56,19 +61,22 @@ class DisplayMoney extends Component {
 			for (let key in tran) {
 				holdTrans.push(tran[key].amount);
 			}
-			// turn transaction values from a string to a number 
+			// turn transaction values from a string to a number
 			const sumOfEx = holdTrans.map((v) => parseInt(v));
 
-
-			// adds up all numbers in the array 
+			// adds up all numbers in the array
 			const reducer = (accumulator, currentValue) => accumulator + currentValue;
 
 			// Checks to see if the array empty if so it sets the value to 0
-			this.setState({
-				transactionsAmount: sumOfEx.length > 0 ? sumOfEx.reduce(reducer) : 0,
-			}, () => { this.subtractExpenses() });
+			this.setState(
+				{
+					transactionsAmount: sumOfEx.length > 0 ? sumOfEx.reduce(reducer) : 0,
+				},
+				() => {
+					this.subtractExpenses();
+				}
+			);
 		});
-
 	};
 
 	subtractExpenses = () => {
@@ -77,8 +85,8 @@ class DisplayMoney extends Component {
 
 		this.setState({
 			newTotal: newTotal,
-		})
-	}
+		});
+	};
 
 	render() {
 		const {
