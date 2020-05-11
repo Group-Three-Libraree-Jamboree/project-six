@@ -1,18 +1,12 @@
-
-.budgetSection {
-    width: 50vw;
-    .dailyInfo:nth-child(2) {
-        margin-left: 20px;
-    }
-}
-
 .budget {
-    display: flex;
     font-size: 3rem;
+    max-width: 400px;
+    // margin: 0 auto;
 }
 
 .dailyInfo {
     font-size: 2rem;
+    line-height: 2.4rem;
     
     span {
         font-size: 2.4rem;
@@ -29,15 +23,19 @@
 }
 
 .expenseInfo input {
-    width: 250px;
-}
-.expenseInfo input:nth-child(2) {
-    margin-left: 10px;
+    width: 200px;
     margin-right: 10px;
+}
+.expenseInfo input:nth-of-type(2) {
+    width: 150px;
 }
 
 button.add,
 button.remove {
     width: 40px;
     height: 40px;
+}
+
+.transactions{
+    display: flex;
 }

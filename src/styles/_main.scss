@@ -16,14 +16,9 @@ main{
 		min-width: 200px;
 	}
 
-	.sections {
-		width: 40%;
-		padding: 1rem;
-		border-radius: 3px;
-	}
-
-	.half:first-of-type{
-		margin-right: 10px;
+	.half{
+		width: 40vw;
+		min-width: 300px;
 	}
 
 	.nextButton {
@@ -36,6 +31,15 @@ main{
 
 	.dailyInfo {
 		padding: 5px 0px;
+	}
+
+	.inputForm input{
+		min-width: 260px;
+	}
+
+	.paymentSubmit{
+		max-width: 280px;
+		margin: 0 auto;
 	}
 
 }

@@ -41,10 +41,12 @@ class NewCalendar extends Component {
 				const d2 = this.state.todayFull;
 
 				this.setState({
-					days: parseInt((d1 - d2) / (24 * 3600 * 1000) + 1),
-				}, ()=> {
+
+				days: parseInt((d1 - d2) / (24 * 3600 * 1000) + 1),
+			}, ()=> {
 					//making sure the next paycheck is not today
-					if (this.state.days === 0){
+					if (this.state.days === 0) {
+
 						return alert("Please select a date different from today")
 					}
 					this.getDaysLeft()
@@ -72,7 +74,10 @@ class NewCalendar extends Component {
 					type="date"
 					id="transactions"
 					name="transactions"
-					// value={this.state.today}
+
+					value={this.state.today}
+ 					// value={this.state.today}
+
 					min = {this.state.today}
 				/>
 			</div>

@@ -15,10 +15,51 @@
 
   main .half{
     width: 100%;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
+    text-align: center;
   }
 
-  main .half:first-of-type{
-	margin-right: 0;
+  main .half:last-of-type{
+  margin-top: 4rem;
+  margin-bottom: 5rem;
+  }
+
+  .nextButton{
+    margin: 0 auto;
+  }
+
+  .expenseInfo{
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .addExpense{
+    margin-top: 40px;
+  }
+  .transactions{
+    justify-content: center;
+  }
+
+  .budget { 
+    margin: 0 auto;
+  }
 }
+
+
+@media(max-width: 400px){
+  .wrapper{
+    width: 90vw;
+  }
+
+  header h1{
+    font-size: 3.2rem;
+  }
+
+  .dailyInfo{
+    font-size: 1.8rem;
+  }
+
+  .dailyInfo span{
+    font-size: 2rem;
+  }
 }
