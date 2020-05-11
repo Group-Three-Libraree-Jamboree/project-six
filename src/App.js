@@ -43,7 +43,14 @@ class App extends Component {
 	};
 
 	calcTotal = () => {
+		//clears the inputs onSubmit. Uncomment preventdefault if we want to keep inputs 
 		// e.preventDefault();
+
+		//making sure Saving input is not larger than Paycheck input
+		if (this.state.paycheck < this.state.savings) {
+			return alert("You cannot save more than your paycheck. Sorry...")
+		}
+		
 		const total =
 			this.state.paycheck - this.state.savings - this.state.dailyExpenses;
 		this.setState(
@@ -83,7 +90,7 @@ getDaysLeft = (days) => {
 
 				<main>
 					<div className="wrapper">
-						<div className="sections">
+						<div className="inputForm half">
 							<form className="paymentSubmit" onSubmit={this.calcTotal}>
 								<h3>Income</h3>
 								<label htmlFor="paycheck">How much is your paycheck?</label>
@@ -118,7 +125,7 @@ getDaysLeft = (days) => {
 							</form>
 						</div>
 
-						<div className="budgetSection">
+						<div className="budgetSection half">
 							<h3>Budget</h3>
 							<div className="budget">
 								<DisplayMoney />

@@ -108,7 +108,7 @@ class DisplayMoney extends Component {
 						You plan to save $<span>{amountToSave.toFixed(2)}</span>
 					</li>
 					<li>
-						You have <span>{daysToNextCheck}</span> days till your next paycheck
+						You have <span>{daysToNextCheck}</span> days till your next paycheck.
 					</li>
 					<li>
 						Your Daily Budget is $<span>{newTotal.toFixed(2)}</span>

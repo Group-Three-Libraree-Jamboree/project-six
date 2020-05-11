@@ -72,16 +72,20 @@ class TransactionRecords extends Component {
             <div>
             <h3 className="addExpense">Add Expense</h3>
                 <div className="expenseInfo">
+                    <label htmlFor="transDescr" className="sr-only">Description of expense</label>
                     <input
                         type="text"
                         name="transDescr"
+                        id="transDescr"
                         onChange={this.handleChange}
                         placeholder= "Expense description"
                         value={this.state.transDescr}
                     />
+                    <label htmlFor="transAmount" className="sr-only">Description of expense</label>
                     <input
                         type="number"
                         name="transAmount"
+                        id="transAmount"
                         onChange={this.handleChange}
                         placeholder= "Expense amount"
                         value={this.state.transAmount}
