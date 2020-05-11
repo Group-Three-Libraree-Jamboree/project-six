@@ -1,8 +1,11 @@
+// Media Queries 
+
 @media(max-width: 950px){
   .wrapper{
     width: 85vw;
   }
 }
+
 
 @media(max-width: 800px){
   .wrapper{
@@ -37,7 +40,14 @@
     margin-top: 40px;
   }
   .transactions{
-    justify-content: center;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   width: 280px;
+   margin: 0 auto;
+  }
+  .transactions li{
+    width: 200px;
   }
 
   .budget { 

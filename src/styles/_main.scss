@@ -1,6 +1,7 @@
+// Styling for main section overall and some income section 
 
 main{
-	min-height: 74vh;
+	min-height: 75vh;
 
 	.wrapper{
 		display: flex;
@@ -23,23 +24,6 @@ main{
 
 	.nextButton {
 		margin-top: 0.2rem;
-	}
-	
-	.paycheckInfo {
-		margin-top: 3rem;
-	}
-
-	.dailyInfo {
-		padding: 5px 0px;
-	}
-
-	.inputForm input{
-		min-width: 260px;
-	}
-
-	.paymentSubmit{
-		max-width: 280px;
-		margin: 0 auto;
 	}
 
 }
