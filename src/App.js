@@ -36,7 +36,6 @@ class App extends Component {
 
 	// this function grabs all input values from app.js and adds it to state
 	handleUserInput = (event) => {
-		console.log(event.target.value);
 		this.setState({
 			[event.target.name]: event.target.value,
 		});
@@ -44,7 +43,7 @@ class App extends Component {
 
 	calcTotal = () => {
 		//clears the inputs onSubmit. Uncomment preventdefault if we want to keep inputs 
-		// e.preventDefault();
+		
 
 		//making sure Saving input is not larger than Paycheck input
 		if (this.state.paycheck < this.state.savings) {
@@ -102,14 +101,7 @@ getDaysLeft = (days) => {
 									onChange={this.handleUserInput}
 									required
 								></input>
-								{/* <label htmlFor="days">Days until next pay period?</label>
-								<input
-									type="number"
-									id="days"
-									name="days"
-									onChange={this.handleUserInput}
-									required
-								></input> */}
+								
 								<NewCalendar getDaysLeft={this.getDaysLeft} />
 								<label htmlFor="savings">How much are you saving?</label>
 								<input
