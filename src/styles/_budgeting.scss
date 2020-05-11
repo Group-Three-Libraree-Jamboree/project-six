@@ -1,19 +1,36 @@
+// Styling for add expense portion
+
 .budget {
     font-size: 3rem;
     max-width: 400px;
-    // margin: 0 auto;
 }
 
 .dailyInfo {
     font-size: 2rem;
     line-height: 2.4rem;
+     padding: 5px 0px;
     
     span {
         font-size: 2.4rem;
         color: $accentOne;
     }
 }
+.paycheckInfo {
+    margin-top: 3rem;
+}
 
+.inputForm input{
+    min-width: 260px;
+}
+
+.paymentSubmit{
+    max-width: 280px;
+    margin: 0 auto;
+}
+
+.dailyInfo li{
+    padding-bottom: 5px;
+}
 .addExpense {
     margin-top: 60px;
 }
@@ -34,8 +51,4 @@ button.add,
 button.remove {
     width: 40px;
     height: 40px;
-}
-
-.transactions{
-    display: flex;
 }

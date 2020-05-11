@@ -74,10 +74,6 @@ class NewCalendar extends Component {
 					type="date"
 					id="transactions"
 					name="transactions"
-
-					value={this.state.today}
- 					// value={this.state.today}
-
 					min = {this.state.today}
 				/>
 			</div>

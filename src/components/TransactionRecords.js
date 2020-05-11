@@ -93,6 +93,7 @@ class TransactionRecords extends Component {
                     <button
                         className="add"
                         type="button"
+                        aria-label="add transaction"
                         onClick={this.addTransactionToDb}>+
                     </button>
                 </div>
